@@ -11,6 +11,11 @@ class App(StaticApp, ChameleonApp):
     def static_path(self):
         return os.path.join(os.path.dirname(__file__), 'static')
 
+@App.setting_section(section='chameleon')
+def get_setting_section():
+    return {
+        'auto_reload': True
+    }
 
 class StaticUrl(object):
 
@@ -34,6 +39,12 @@ class Root(object):
 )
 def frontpage(self, request):
     request.include('jquery')
-    request.include('materialize')
-    return {'static_url': StaticUrl(request)}
+    request.include('Materialize')
+    request.include('abyres.quotebuilder')
+    templates = request.app.registry._template_loaders.get('.pt')
+    master_macro = templates['main_template.pt'].macros['master']
+    return {
+        'static_url': StaticUrl(request),
+        'master_macro': master_macro
+    }
 

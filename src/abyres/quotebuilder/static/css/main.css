@@ -1,0 +1,31 @@
+header, main, footer {
+    padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+.page-title {
+    font-size:200%;
+}
+
+.side-nav.fixed li.logo {
+    padding:15px;
+    border-bottom:1px solid #ccc;
+}
+
+.side-nav .logo:hover {
+    background:inherit;
+}
+
+.side-nav.fixed li {
+    line-height:44px;
+    padding:0;
+}
+
+#main-container {
+    padding-top: 20px;   
+}

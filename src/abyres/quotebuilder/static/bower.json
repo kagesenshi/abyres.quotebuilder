@@ -1,0 +1,27 @@
+{
+  "name": "abyres.quotebuilder",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kagesenshi/abyres.quotebuilder",
+  "authors": [
+    "Izhar Firdaus <kagesenshi.87@gmail.com>"
+  ],
+  "main": [
+    "css/main.css",
+    "js/main.js"
+  ],
+  "dependencies": {
+    "jquery": "2.1.3",
+    "Materialize": "0.95.2"
+  },
+  "description": "Static resources for abyres.quotebuilder",
+  "license": "AGPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
+
