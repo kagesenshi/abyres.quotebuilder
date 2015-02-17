@@ -25,7 +25,7 @@ setup(
     ],
     entry_points={
         'console_scripts' : [
-            'frontend-start=kinmu.web.main:run'
+            'quotebuilder-start=abyres.quotebuilder.main:run'
         ]
     }
 
