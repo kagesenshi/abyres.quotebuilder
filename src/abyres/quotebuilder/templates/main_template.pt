@@ -1,8 +1,10 @@
 <metal:macro define-macro="master">
-<html>
+<!DOCTYPE html>
+<html ng-app="quotebuilderApp">
     <head>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="ngPartials" content="${static_url('abyres.quotebuilder')}/partials/"/>
     </head>
     <body tal:define="static python:static_url('abyres.quotebuilder')">
         <header>
@@ -44,3 +46,4 @@
     </body>
 </html>
 </metal:macro>
+

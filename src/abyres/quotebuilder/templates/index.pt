@@ -1,9 +1,6 @@
-<html>
-    <metal:master use-macro="master_macro">
-        <metal:slot fill-slot="main">
-            Hello world
-        </metal:slot>
-
-    </metal:master>
-
-</html>
+<metal:master use-macro="master_macro">
+    <metal:slot fill-slot="main">
+        <div ng-view>
+        </div>
+    </metal:slot>
+</metal:master>

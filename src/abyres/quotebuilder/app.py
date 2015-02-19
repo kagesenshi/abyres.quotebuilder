@@ -25,6 +25,19 @@ class StaticUrl(object):
     def __call__(self, component):
         return self.components.get_component(component).url()
 
+def template_globals(func):
+    def template_globals_wrapper(self, request):
+        request.include('abyres.quotebuilder')
+        templates = request.app.registry._template_loaders.get('.pt')
+        master_macro = templates['main_template.pt'].macros['master']
+        result = {
+            'static_url': StaticUrl(request),
+            'master_macro': master_macro
+        }  
+        result.update(func(self, request) or {})
+        return result
+    return template_globals_wrapper
+
 @App.template_directory()
 def get_template_directory():
     return 'templates'
@@ -33,18 +46,8 @@ def get_template_directory():
 class Root(object):
     pass
 
-@App.html(
-    model=Root,
-    template='index.pt'
-)
-def frontpage(self, request):
-    request.include('jquery')
-    request.include('Materialize')
-    request.include('abyres.quotebuilder')
-    templates = request.app.registry._template_loaders.get('.pt')
-    master_macro = templates['main_template.pt'].macros['master']
-    return {
-        'static_url': StaticUrl(request),
-        'master_macro': master_macro
-    }
+@App.html(model=Root, template='index.pt')
+@template_globals
+def overview(self, request):
+    return {}
 
