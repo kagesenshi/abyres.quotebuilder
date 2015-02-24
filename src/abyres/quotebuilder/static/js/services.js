@@ -1,16 +1,18 @@
 (function () {
     var Service = angular.module('quotebuilderServices', ['ngResource']);
 
-    Service.factory('Product', ['$resource',
+    Service.factory('CRUDClient', ['$resource',
             function ($resource) {
-                return $resource('products/:productId', {}, {
-                    query: {
-                        method: 'GET',
-                        params: {productId: ''},
-                        isArray: true
-                    }
-                })
+                return function (collectionId) {
+                        var base_url = '/' + collectionId + '/';
+                        return $resource(base_url + ':objectId', {}, {
+                            query: {
+                                method: 'GET',
+                                params: {objectId: ''},
+                                isArray: true
+                            }
+                        })
+                }
             }
     ])
-
 })();

@@ -1,10 +1,18 @@
 from abyres.quotebuilder.app import App, template_globals, Root
+import morepath
 
 class Catalogue(object):
     pass
 
 class ProductCollection(object):
-    pass
+    
+    def __init__(self):
+        settings = morepath.settings()
+        self.products = settings.db.default.collection('products')
+
+    def add(self, data):
+        self.products.add(data)
+
 
 class Product(object):
     def __init__(self, id, name, data):

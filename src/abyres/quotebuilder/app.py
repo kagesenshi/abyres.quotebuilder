@@ -2,6 +2,7 @@ import morepath
 import os
 from more.static import StaticApp
 from more.chameleon import ChameleonApp
+import json
 
 class App(StaticApp, ChameleonApp):
 
@@ -11,8 +12,23 @@ class App(StaticApp, ChameleonApp):
     def static_path(self):
         return os.path.join(os.path.dirname(__file__), 'static')
 
+
+@App.setting_section(section='appconfig')
+def get_appconfig():
+    return json.loads(
+        open(os.path.join(
+            os.path.dirname(__file__), 'config.json'
+        )).read()
+    )
+
+@App.setting_section(section='limits')
+def get_limits_settings():
+    return {
+        'result-per-page': 20
+    }
+
 @App.setting_section(section='chameleon')
-def get_setting_section():
+def get_chameleon_settings():
     return {
         'auto_reload': True
     }
